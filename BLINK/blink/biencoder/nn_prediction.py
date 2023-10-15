@@ -91,8 +91,10 @@ def get_topk_predictions(
                     break
             stats[src].add(pointer)
 
-            if pointer == -1:
-                continue
+            # for ESCO: this is commented out because otherwise 
+            # it doesn't add the incorrect output to the list
+            # if pointer == -1:
+                # continue
 
             if not save_predictions:
                 continue
