@@ -73,9 +73,10 @@ class Stats():
         self.hits = []
         self.top_k = top_k
         self.rank = [1, 4, 8, 16, 32]
-        self.LEN = len(self.rank) 
+        self.LEN = len(self.rank)
         for i in range(self.LEN):
             self.hits.append(0)
+        self.reciprocal_ranks = []
 
     def add(self, idx):
         self.cnt += 1
@@ -84,11 +85,14 @@ class Stats():
         for i in range(self.LEN):
             if idx < self.rank[i]:
                 self.hits[i] += 1
+        reciprocal_rank = 1.0 / (idx + 1)  # Calculate reciprocal rank
+        self.reciprocal_ranks.append(reciprocal_rank)
 
     def extend(self, stats):
         self.cnt += stats.cnt
         for i in range(self.LEN):
             self.hits[i] += stats.hits[i]
+        self.reciprocal_ranks.extend(stats.reciprocal_ranks)
 
     def output(self):
         output_json = "Total: %d examples." % self.cnt
@@ -96,5 +100,10 @@ class Stats():
             if self.top_k < self.rank[i]:
                 break
             output_json += "\nAcc@%d: %.4f" % (self.rank[i], self.hits[i] / float(self.cnt))
+        
+        # Calculate Mean Reciprocal Rank (MRR)
+        if self.cnt > 0:
+            mrr = sum(self.reciprocal_ranks) / float(self.cnt)
+            output_json += "\nMRR: %.4f" % mrr
+        
         return output_json
-    

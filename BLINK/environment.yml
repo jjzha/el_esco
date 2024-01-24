@@ -1,4 +1,4 @@
-name: blink
+name: blinkv2
 channels:
   - defaults
 dependencies:
@@ -106,4 +106,4 @@ dependencies:
     - urllib3==2.0.4
     - yarl==1.9.2
     - zipp==3.16.2
-prefix: /home/mike/anaconda3/envs/blink
+prefix: /home/mike/anaconda3/envs/blinkv2
