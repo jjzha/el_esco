@@ -1,6 +1,10 @@
 # ESCO Entity Linking
 
-This repository is for the paper `Entity Linking in the Job Market Domain`.
+This repository is for the paper 
+
+**Entity Linking in the Job Market Domain**
+
+Mike Zhang, Rob van der Goot, and Barbara Plank. To appear at EACL Findings 2024.
 
 ---
 
