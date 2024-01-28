@@ -24,6 +24,9 @@ conda create env -f GENRE/environment.yml
 
 Once you followed the installation instructions in both BLINK and GENRE. You can train models.
 
+# Data
+In this repository, you can find a `.tar` (`data_entity_linking_esco.tar`) file with the respective data for each model. We suggest putting the data in a `/data/` folder per model directory. 
+
 # Training
 In both BLINK and GENRE, we left a folder `ESCO_scripts` for the ESCO-specific experiments.
 
