@@ -8,6 +8,15 @@ import argparse
 import os
 import json
 
+def calculate_mrr(predictions, gold):
+    mrr_sum = 0.0
+    for pred, g in zip(predictions, gold):
+        rank = next((i + 1 for i, p in enumerate(pred) if p == g), 0)
+        mrr_sum += 1 / rank if rank > 0 else 0
+
+    mrr = mrr_sum / len(gold) if len(gold) > 0 else 0
+    return mrr
+
 
 def main(args):
     # Load the prefix tree (trie)
@@ -64,9 +73,10 @@ def main(args):
             final_preds.append([obj["text"] for obj in predictions[0]])
     
     with open(f"{output_path}results_constrained.out", "a") as fout_results:
-        # Calculate accuracy@k
+        # Calculate accuracy@k and MRR
         fout_results.write(model_path)
         fout_results.write("\n")
+
         for k in ks:
             total_correct_at_k = 0
             for p, g in zip(final_preds, gold):
@@ -77,6 +87,10 @@ def main(args):
             # Calculate the overall accuracy@k for the test set
             overall_accuracy_at_k = total_correct_at_k / total_examples
             fout_results.write(f"Accuracy@{k}: {overall_accuracy_at_k:.4f}\n")
+
+        # Calculate MRR
+        mrr = calculate_mrr(final_preds, gold)
+        fout_results.write(f"MRR: {mrr:.4f}\n") 
 
 
 if __name__ == "__main__":
