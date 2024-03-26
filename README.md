@@ -4,7 +4,7 @@ This repository is for the paper
 
 **Entity Linking in the Job Market Domain**
 
-Mike Zhang, Rob van der Goot, and Barbara Plank. To appear at EACL Findings 2024.
+Mike Zhang, Rob van der Goot, and Barbara Plank. In EACL Findings 2024.
 
 ---
 
@@ -50,3 +50,26 @@ The `*_pretrained.sh` files are for further fine-tuning the models released by b
 Also in the `ESCO_scripts` folders of both models, you can find the evaluation scripts `BLINK/ESCO_scripts/eval_blink_biencoder.sh` and `GENRE/ESCO_scripts/evaluate_genre.sh`. 
 
 Once you trained your models. These should be able to run. By default, it should also create the predictions.
+
+# Citation
+
+If you have been using this work in your cool work, consider citing it:
+
+```
+@inproceedings{zhang-etal-2024-entity,
+    title = "Entity Linking in the Job Market Domain",
+    author = "Zhang, Mike  and
+      Goot, Rob  and
+      Plank, Barbara",
+    editor = "Graham, Yvette  and
+      Purver, Matthew",
+    booktitle = "Findings of the Association for Computational Linguistics: EACL 2024",
+    month = mar,
+    year = "2024",
+    address = "St. Julian{'}s, Malta",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.findings-eacl.28",
+    pages = "410--419",
+    abstract = "In Natural Language Processing, entity linking (EL) has centered around Wikipedia, but yet remains underexplored for the job market domain. Disambiguating skill mentions can help us get insight into the current labor market demands. In this work, we are the first to explore EL in this domain, specifically targeting the linkage of occupational skills to the ESCO taxonomy (le Vrang et al., 2014). Previous efforts linked coarse-grained (full) sentences to a corresponding ESCO skill. In this work, we link more fine-grained span-level mentions of skills. We tune two high-performing neural EL models, a bi-encoder (Wu et al., 2020) and an autoregressive model (Cao et al., 2021), on a synthetically generated mention{--}skill pair dataset and evaluate them on a human-annotated skill-linking benchmark. Our findings reveal that both models are capable of linking implicit mentions of skills to their correct taxonomy counterparts. Empirically, BLINK outperforms GENRE in strict evaluation, but GENRE performs better in loose evaluation (accuracy@k).",
+}
+```
